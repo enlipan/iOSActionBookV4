@@ -4,3 +4,6 @@
 [submodule "v1Quiz"]
 	path = v1Quiz
 	url = ./Quiz
+[submodule "4Hypnosister"]
+	path = 4Hypnosister
+	url = ./Hypnosister
