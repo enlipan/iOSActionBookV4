@@ -1,0 +1,6 @@
+[submodule "randomItems"]
+	path = randomItems
+	url = ./RandomItems
+[submodule "v1Quiz"]
+	path = v1Quiz
+	url = ./Quiz
