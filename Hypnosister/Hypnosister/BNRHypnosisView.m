@@ -8,7 +8,18 @@
 
 #import "BNRHypnosisView.h"
 
+// m 文件中声明属性: 类扩展 : 隐藏内部细节
+//头文件中的声明表明是对外可见属性,只会被类内部使用的属性和方法应当声明在类扩展中
+//子类无法访问类扩展中声明的方法与属性
+@interface BNRHypnosisView()
+
+@property (strong,nonatomic) UIColor *circleColor;
+
+@end
+
 @implementation BNRHypnosisView
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -24,6 +35,7 @@
     //frame.size width height
     self = [super initWithFrame:frame];
     if (self) {
+        self.circleColor = [UIColor lightGrayColor];
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -31,6 +43,7 @@
 
 -(void) drawRect:(CGRect)rect
 {
+    NSLog(@"%@",self);
     CGRect bounds = self.bounds;//CGRect bounds View 绘制自身时的内容坐标系
     
     //计算中心
@@ -53,7 +66,7 @@
     
     path.lineWidth =  10;
     //绘制颜色设置
-    [[UIColor lightGrayColor]setStroke];
+    [self.circleColor setStroke];
     [path stroke];
 
     
@@ -94,6 +107,26 @@
     
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"%@ was touched...",self);
+
+    float red = (arc4random() % 100)/100.0;
+    float green = (arc4random() % 100)/100.0;
+    float blue = (arc4random() % 100)/100.0;
+
+    UIColor * randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    self.circleColor = randomColor;
+}
+
+
+
+-(void)setCircleColor:(UIColor *)circleColor
+{
+    _circleColor = circleColor;// 不能使用  self.circleColor 无限循环
+    [self setNeedsDisplay];
 }
 
 @end

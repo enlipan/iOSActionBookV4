@@ -1,13 +1,15 @@
 //
 //  AppDelegate.m
-//  Hypnosister
+//  HypnoNerd
 //
-//  Created by Paullee on 2017/12/26.
+//  Created by Paullee on 2017/12/28.
 //  Copyright © 2017年 Paullee. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
-#import "BNRHypnosisView.h"
+#import "BNRHypnosisViewController.h"
+#import "BNRReminderViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,54 +20,39 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
-    self.window.rootViewController = [[UIViewController alloc]init];
+    
+    //window 的 ViewController 被设置后,进而加载 Controller 对应的 View 对象
+    BNRHypnosisViewController *hyController = [[BNRHypnosisViewController alloc]init];
+    
+    //mainbundle 主程序包,代表代码文件以及资源文件
+    NSBundle *appBundle = [NSBundle mainBundle];
+    
+    //指定nib name 初始化 Controller, 在 bundle 中查找对应 xib 文件
+    //BNRReminderViewController *reminderController = [[BNRReminderViewController alloc]initWithNibName:@"BNRReminderViewController" bundle:appBundle];
+    
+    //由于 nib 文件名称与 ViewController 名称对应,所以无需明确指定 nib 文件名,构造函数能够自动加载对应的nib 文件
+    BNRReminderViewController *reminderController = [[BNRReminderViewController alloc]init];
+    
+    UITabBarController *tabController = [[UITabBarController alloc]init];
+    tabController.viewControllers = @[hyController,reminderController];
+    
+    self.window.rootViewController = tabController;
+
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    CGRect screenRect = self.window.bounds;
-    CGRect bigRect = screenRect;
-    bigRect.size.width *=2.0;
-    //bigRect.size.height *=2.0;
-    
-    //设置 ScrollView 的尺寸 => 镜头尺寸  滚动时拖动的是镜头,不是 View
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
-
-    //CGRect 结构体 : 不属于 OC 对象
-    //CGMake  origin.x origin.y width height  值是独立像素点
-//    CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    //CGRect firstFrame = self.window.bounds;
-    
-    //BNRHypnosisView *firstView = [[BNRHypnosisView alloc]initWithFrame:bigRect];
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
-    firstView.userInteractionEnabled = YES;
-    [scrollView addSubview:firstView];
-    
-   
-    // 第二个 View 的放置位置,利用 origin 控制其在第一个 View 右侧
-    screenRect.origin.x = screenRect.size.width;
-    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
-    [scrollView addSubview:anotherView];
-    
-    //分页 根据 ScrollView bound 尺寸将其分割,拖动后 ScrollView 自动滚动只显示其中一个分割区域
-    [scrollView  setPagingEnabled:YES];
-    //设置 ScrollView 的取景范围,整个能显示的内容大小;
-    scrollView.contentSize = bigRect.size;
-    
-    //firstView.backgroundColor = [UIColor redColor];
-    //add subView 需要在 Window Controller 设置以及makeKeyAndVisible 之后,否则 touch 事件不响应
-    //[self.window addSubview:firstView];// 子 View 有一个弱引用的 superView 属性
-    [self.window addSubview:scrollView];
-    
-    
-//    CGRect secondFrame = CGRectMake(20, 30, 50, 50);
-//    BNRHypnosisView *secondView = [[BNRHypnosisView alloc]initWithFrame:secondFrame];
-//    secondView.backgroundColor = [UIColor yellowColor];
-//    //[self.window addSubview:secondView];
-//    [firstView addSubview:secondView];
-    
-    self.window.backgroundColor = [UIColor whiteColor];
+    //申请 本地通知权限
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:options
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!granted) {
+                                  NSLog(@"Something went wrong");
+                              }
+                          }];
+    application.applicationIconBadgeNumber = 0;
     return YES;
 }
 
