@@ -19,6 +19,8 @@
 		9B7339891FF41E8600FA690D /* Hypno.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B7339871FF41E8600FA690D /* Hypno.png */; };
 		9B73398C1FF41E8F00FA690D /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B73398A1FF41E8E00FA690D /* Time.png */; };
 		9B73398D1FF41E8F00FA690D /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B73398B1FF41E8F00FA690D /* Time@2x.png */; };
+		9BBDD38E1FF564E8007E11D1 /* BNRQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BBDD38C1FF564E7007E11D1 /* BNRQuizViewController.xib */; };
+		9BBDD38F1FF564E8007E11D1 /* BNRQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDD38D1FF564E7007E11D1 /* BNRQuizViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,9 @@
 		9B7339871FF41E8600FA690D /* Hypno.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hypno.png; sourceTree = "<group>"; };
 		9B73398A1FF41E8E00FA690D /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
 		9B73398B1FF41E8F00FA690D /* Time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Time@2x.png"; sourceTree = "<group>"; };
+		9BBDD38B1FF564E7007E11D1 /* BNRQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNRQuizViewController.h; path = ../../Quiz/Quiz/BNRQuizViewController.h; sourceTree = "<group>"; };
+		9BBDD38C1FF564E7007E11D1 /* BNRQuizViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNRQuizViewController.xib; path = ../../Quiz/Quiz/BNRQuizViewController.xib; sourceTree = "<group>"; };
+		9BBDD38D1FF564E7007E11D1 /* BNRQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNRQuizViewController.m; path = ../../Quiz/Quiz/BNRQuizViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +83,16 @@
 				9B73397F1FF40ED700FA690D /* BNRHypnosisViewController.m */,
 				9B7339811FF40EE100FA690D /* BNRReminderViewController.h */,
 				9B7339821FF40EE100FA690D /* BNRReminderViewController.m */,
+				9B7339841FF4131500FA690D /* BNRReminderViewController.xib */,
+				9BBDD38B1FF564E7007E11D1 /* BNRQuizViewController.h */,
+				9BBDD38D1FF564E7007E11D1 /* BNRQuizViewController.m */,
+				9BBDD38C1FF564E7007E11D1 /* BNRQuizViewController.xib */,
 				9B73396B1FF40E1C00FA690D /* AppDelegate.h */,
 				9B73396C1FF40E1C00FA690D /* AppDelegate.m */,
 				9B73396E1FF40E1C00FA690D /* Assets.xcassets */,
 				9B7339701FF40E1C00FA690D /* LaunchScreen.storyboard */,
 				9B7339731FF40E1C00FA690D /* Info.plist */,
 				9B7339741FF40E1C00FA690D /* main.m */,
-				9B7339841FF4131500FA690D /* BNRReminderViewController.xib */,
 				9B7339871FF41E8600FA690D /* Hypno.png */,
 				9B7339861FF41E8600FA690D /* Hypno@2x.png */,
 				9B73398A1FF41E8E00FA690D /* Time.png */,
@@ -155,6 +163,7 @@
 				9B73398C1FF41E8F00FA690D /* Time.png in Resources */,
 				9B7339851FF4131500FA690D /* BNRReminderViewController.xib in Resources */,
 				9B73396F1FF40E1C00FA690D /* Assets.xcassets in Resources */,
+				9BBDD38E1FF564E8007E11D1 /* BNRQuizViewController.xib in Resources */,
 				9B7339721FF40E1C00FA690D /* LaunchScreen.storyboard in Resources */,
 				9B7339881FF41E8600FA690D /* Hypno@2x.png in Resources */,
 				9B7339891FF41E8600FA690D /* Hypno.png in Resources */,
@@ -170,6 +179,7 @@
 			files = (
 				9B7339801FF40ED700FA690D /* BNRHypnosisViewController.m in Sources */,
 				9B7339751FF40E1C00FA690D /* main.m in Sources */,
+				9BBDD38F1FF564E8007E11D1 /* BNRQuizViewController.m in Sources */,
 				9B73396D1FF40E1C00FA690D /* AppDelegate.m in Sources */,
 				9B7339831FF40EE100FA690D /* BNRReminderViewController.m in Sources */,
 				9B73397D1FF40EA800FA690D /* BNRHypnosisView.m in Sources */,

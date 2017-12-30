@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "BNRHypnosisViewController.h"
 #import "BNRReminderViewController.h"
+#import "BNRQuizViewController.h"
 
 @interface AppDelegate ()
 
@@ -35,8 +36,10 @@
     //由于 nib 文件名称与 ViewController 名称对应,所以无需明确指定 nib 文件名,构造函数能够自动加载对应的nib 文件
     BNRReminderViewController *reminderController = [[BNRReminderViewController alloc]init];
     
+    BNRQuizViewController *quizController =[[BNRQuizViewController alloc]init];
+    
     UITabBarController *tabController = [[UITabBarController alloc]init];
-    tabController.viewControllers = @[hyController,reminderController];
+    tabController.viewControllers = @[hyController,reminderController,quizController];
     
     self.window.rootViewController = tabController;
 

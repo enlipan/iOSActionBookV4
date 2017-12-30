@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "BNRHypnosisView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()  <UIScrollViewDelegate>
+
+@property (nonatomic) BNRHypnosisView *hypnosisView;
 
 @end
 
@@ -31,6 +33,7 @@
     
     //设置 ScrollView 的尺寸 => 镜头尺寸  滚动时拖动的是镜头,不是 View
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
+    scrollView.delegate = self;
 
     //CGRect 结构体 : 不属于 OC 对象
     //CGMake  origin.x origin.y width height  值是独立像素点
@@ -45,13 +48,20 @@
    
     // 第二个 View 的放置位置,利用 origin 控制其在第一个 View 右侧
     screenRect.origin.x = screenRect.size.width;
-    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
-    [scrollView addSubview:anotherView];
+    //BNRHypnosisView *anotherView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
+    self.hypnosisView =[[BNRHypnosisView alloc]initWithFrame:screenRect];
+    [scrollView addSubview:self.hypnosisView];
     
     //分页 根据 ScrollView bound 尺寸将其分割,拖动后 ScrollView 自动滚动只显示其中一个分割区域
-    [scrollView  setPagingEnabled:YES];
+    //[scrollView  setPagingEnabled:YES];
+    
+    [scrollView setPagingEnabled:NO];
+    //组合实现多点触控 设置放大缩小 scale 倍数
+    scrollView.maximumZoomScale = 2.0;
+    scrollView.minimumZoomScale = 0.2;
+    
     //设置 ScrollView 的取景范围,整个能显示的内容大小;
-    scrollView.contentSize = bigRect.size;
+    scrollView.contentSize =  bigRect.size;
     
     //firstView.backgroundColor = [UIColor redColor];
     //add subView 需要在 Window Controller 设置以及makeKeyAndVisible 之后,否则 touch 事件不响应
@@ -67,6 +77,12 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     return YES;
+}
+
+- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    // 指定多点触控时缩放的 View
+    return self.hypnosisView;
 }
 
 
