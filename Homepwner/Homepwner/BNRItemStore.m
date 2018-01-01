@@ -56,6 +56,23 @@
     return item;
 }
 
+-(void)removeItem:(BNRItem *)item
+{
+    // removeObject(Item 中的 isEqual 函数对比) 对比 removeObjectIdenticalTo (Item 中指针对比)
+    [self.privateItems removeObjectIdenticalTo:item];
+}
+
+-(void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
+{
+    if (fromIndex == toIndex) return;
+    
+    BNRItem *fromItem = self.privateItems[fromIndex];
+    
+    [self.privateItems removeObjectAtIndex:fromIndex];
+    //
+    [self.privateItems insertObject:fromItem atIndex:toIndex];
+}
+
 
 
 @end
